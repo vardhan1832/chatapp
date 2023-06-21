@@ -4,7 +4,9 @@ const sequelize = require('./util/database')
 const cors = require('cors')
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: '*'
+}))
 
 const signinroutes = require('./routes/user')
 
@@ -12,7 +14,7 @@ app.use(bodyparser.json({ extended: false }));
 
 app.use('/user',signinroutes)
 
-sequelize.sync({force: true})
+sequelize.sync()
 .then(res=>{
     app.listen(3000)
 }).catch(err=>{

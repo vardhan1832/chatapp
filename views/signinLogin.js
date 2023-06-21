@@ -10,7 +10,8 @@ async function signup(e){
         console.log(userObj)
         const response = await axios.post('http://localhost:3000/user/sign-up',userObj)
         if(response.status===201){
-            window.location.href='./login.html';
+           // window.location.href='./login.html';
+           alert(response.data.message)
         }else{
             throw new Error('failed to signin');
         }
