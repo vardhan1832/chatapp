@@ -18,7 +18,7 @@ const login = async (req,res,next)=>{
                     throw new Error(err)
                 }else{
                     if(result){
-                        res.status(201).json({message: 'Login succesfull' , token: generateAccessToken(usermail[0].id , usermail[0].name) })
+                        res.status(201).json({message: 'Login succesfull' , token: generateAccessToken(usermail[0].id , usermail[0].name)})
                     }else{
                         res.status(401).json({message: 'password incorrect'})
                     }

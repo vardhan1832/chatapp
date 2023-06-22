@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data:;">
-    <title>Login</title>
+    <title>chatzzz...</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styleschat.css">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -20,19 +20,30 @@
         </nav>  
     </header>
     <br>
-    <div class="container form-container">
-        <form class="form-control" onsubmit="login(event)">
-            <h3 style="text-align: center;">LOG IN</h3><br>
-            <label for="email" class="form-label">Enter your mail:</label>
-            <input type="email" class="form-control" id="email" name="mail" required>
-            <label for="pass" class="form-label">Password:</label>
-            <input type="password" class="form-control" id="pass" name="password" required><br>
-            <button type="submit" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">LOGIN</button>
-            <a style="color: rgb(0, 0, 0);margin-left: 2%;" href="./signup.html">New User - SIGNIN</a>
-        </form>
+    <div class="chat-window ">
+        <div class="chat-header">
+            <h2>Welcome to the Chat</h2>
+        </div>
+        <div class="chat-logs">
+            <div class="logs"></div>
+        </div>
+        <div class="chat-messages">
+            <div class="message">
+                <span class="sender">John:</span>
+                <span class="text">Hello!</span>
+            </div>
+            <div class="message">
+                <span class="sender">Jane:</span>
+                <span class="text">Hi there!</span>
+            </div>
+        </div> 
+        <div class="chat-input">
+            <input type="text" id="text" class="textInput" placeholder="Type your message">
+            <button id="sendmsg">Send</button>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-    <script src="./signinLogin.js"></script>
+    <script src="./chatzz.js"></script>
 
 </body>
 </html>

@@ -4,28 +4,25 @@ body {
     background-image: url('https://images.pexels.com/photos/4040649/pexels-photo-4040649.jpeg?auto=compress&cs=tinysrgb&w=400');
     background-repeat: no-repeat;
     background-size: cover;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 500px;
-    /* margin-top: 8%; */
-    /* padding: 20px; */
-  }
+}
 
-  .form-container {
-    background-color: transparent;
-  }
-  
-  .form-container form {
-    background-color: rgba(255, 255, 255, 0.6);
-  }
+.container {
+  width: 100%;
+  max-width: 500px;
+  /* margin-top: 8%; */
+  /* padding: 20px; */
+}
 
-  .logo-img {
-    max-width: 50px; /* Adjust the value as needed */
-    height: auto;
-  }
-  
-  /* Add more CSS styling for the form fields as needed */
-  
-  
+.form-container {
+  background-color: transparent;
+}
+
+.form-container form {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.logo-img {
+  max-width: 50px; /* Adjust the value as needed */
+  height: auto;
+}
+
