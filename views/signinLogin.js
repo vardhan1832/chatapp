@@ -19,3 +19,22 @@ async function signup(e){
         console.log("Error in Signup", err);
     }
 }
+
+async function login(e){
+    try{
+        e.preventDefault();
+        const loginDetails = {
+            email: e.target.mail.value,
+            password: e.target.password.value
+        }
+        const response = await axios.post('http://localhost:3000/user/login',loginDetails)
+        if(response.status === 201){
+            alert(response.data.message)
+        }else{
+            throw new Error(response.data.message)
+        }
+    }
+    catch(err){
+        console.log("Error in Signup", err);
+    }
+}

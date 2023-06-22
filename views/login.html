@@ -21,18 +21,14 @@
     </header>
     <br>
     <div class="container form-container">
-        <form class="form-control" onsubmit="signup(event)">
-            <h3 style="text-align: center;">SIGN UP</h3><br>
-            <label for="username" class="form-label">Enter your name:</label>
-            <input type="text" class="form-control" id="username" name="name" required>
+        <form class="form-control" onsubmit="login(event)">
+            <h3 style="text-align: center;">LOG IN</h3><br>
             <label for="email" class="form-label">Enter your mail:</label>
             <input type="email" class="form-control" id="email" name="mail" required>
-            <label for="number" class="form-label">Enter your phone number:</label>
-            <input type="number" class="form-control" id="pnum" name="phonenum" required>
             <label for="pass" class="form-label">Password:</label>
             <input type="password" class="form-control" id="pass" name="password" required><br>
-            <button type="submit" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">SIGNIN</button>
-            <a style="color: rgb(0, 0, 0);margin-left: 2%;" href="./login.html">Existing User - LOGIN</a>
+            <button type="submit" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">LOGIN</button>
+            <a style="color: rgb(0, 0, 0);margin-left: 2%;" href="./signup.html">New User - SIGNIN</a>
         </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
