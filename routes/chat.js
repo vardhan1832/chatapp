@@ -4,6 +4,6 @@ const userauthentication = require('../middleware/auth')
 const router = express.Router();
 
 router.use('/user/chat',userauthentication.authentication,chatController.postChat)
-router.use('/user/chats',userauthentication.authentication,chatController.getChat)
+router.use('/user/chats/:lastid',userauthentication.authentication,chatController.getChat)
 
 module.exports = router;

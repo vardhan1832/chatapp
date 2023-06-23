@@ -1,14 +1,34 @@
 const token = localStorage.getItem('token')
 
 setInterval(async ()=>{
-    const response = await axios.get('http://localhost:3000/user/chats',{ headers: { "Authorization" : token}})
-    if(response.status === 201){
-        document.querySelector('.chat-messages').innerHTML = ''
-        for(let i=0;i<response.data.chat.length;i++){
-            showchatonscreen(response.data.chat[i])
-       }
+ 
+    let lastid;
+    var chatarr = localStorage.getItem('chats')
+    var realchatarr  =  JSON.parse(chatarr)
+    if(realchatarr === null){
+        realchatarr = [];
+        lastid =undefined
+    }else{
+        lastid = realchatarr[realchatarr.length - 1].id
     }
-},1000)
+    console.log('1st', lastid)
+ 
+    const response = await axios.get(`http://localhost:3000/user/chats/${lastid}`,{ headers: { "Authorization" : token}})
+    if(response.status === 201){
+        realchatarr.push(...response.data.chat)
+        console.log(realchatarr)
+        localStorage.setItem('chats',JSON.stringify(realchatarr))
+        localStorage.setItem('user',response.data.user)
+         lastid = response.data.lastid
+    }
+    const user = localStorage.getItem('user')
+    document.querySelector('.chat-messages').innerHTML = ''
+    for(let i=0;i<realchatarr.length;i++){
+        showchatonscreen(realchatarr[i])
+    }
+    console.log('2nt', lastid)
+    document.querySelector('.chat-logs').innerHTML = `<div class="logs">${user}</div>`
+},3000)
 
 document.getElementById('sendmsg').onclick=async (e)=>{
     e.preventDefault();
@@ -24,13 +44,33 @@ document.getElementById('sendmsg').onclick=async (e)=>{
 
 window.addEventListener('DOMContentLoaded',async (e)=>{
     e.preventDefault();
-    const response = await axios.get('http://localhost:3000/user/chats',{ headers: { "Authorization" : token}})
-    if(response.status === 201){
-       for(let i=0;i<response.data.chat.length;i++){
-            showchatonscreen(response.data.chat[i])
-       }
+    //let lastid;
+    var chatarr = localStorage.getItem('chats')
+    var realchatarr  =  JSON.parse(chatarr)
+    // if(realchatarr === null){
+    //     realchatarr = [];
+    //     lastid =undefined
+    // }else{
+    //     lastid = realchatarr[realchatarr.length - 1].id
+    // }
+    // console.log('1st', lastid)
+ 
+    // const response = await axios.get(`http://localhost:3000/user/chats/${lastid}`,{ headers: { "Authorization" : token}})
+    // if(response.status === 201){
+    //     realchatarr.push(...response.data.chat)
+    //     console.log(realchatarr)
+    //     localStorage.setItem('chats',JSON.stringify(realchatarr))
+    //     localStorage.setItem('user',response.data.user)
+    //      lastid = response.data.lastid
+    // }
+    const user = localStorage.getItem('user')
+    document.querySelector('.chat-messages').innerHTML = ''
+    for(let i=0;i<realchatarr.length;i++){
+        showchatonscreen(realchatarr[i])
     }
-    document.querySelector('.chat-logs').innerHTML += `<div class="logs">${response.data.user}</div>`
+    // console.log('2nt', lastid)
+    document.querySelector('.chat-logs').innerHTML += `<div class="logs">${user}</div>`
+    
 })
 
 function showchatonscreen(data){
