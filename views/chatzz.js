@@ -1,5 +1,15 @@
 const token = localStorage.getItem('token')
 
+setInterval(async ()=>{
+    const response = await axios.get('http://localhost:3000/user/chats',{ headers: { "Authorization" : token}})
+    if(response.status === 201){
+        document.querySelector('.chat-messages').innerHTML = ''
+        for(let i=0;i<response.data.chat.length;i++){
+            showchatonscreen(response.data.chat[i])
+       }
+    }
+},1000)
+
 document.getElementById('sendmsg').onclick=async (e)=>{
     e.preventDefault();
     let msgobj = {
@@ -7,10 +17,7 @@ document.getElementById('sendmsg').onclick=async (e)=>{
     } 
     const response = await axios.post('http://localhost:3000/user/chat',msgobj,{ headers: { "Authorization" : token}})
     if(response.status === 201){
-        document.querySelector('.chat-messages').innerHTML = ''
-        for(let i=0;i<response.data.chat.length;i++){
-            showchatonscreen(response.data.chat[i])
-       }
+        showchatonscreen(response.data)
     }
    
 }
