@@ -1,5 +1,4 @@
 const token = localStorage.getItem('token')
-// const userobj = parseJwt(token)
 
 document.getElementById('sendmsg').onclick=async (e)=>{
     e.preventDefault();
@@ -8,25 +7,28 @@ document.getElementById('sendmsg').onclick=async (e)=>{
     } 
     const response = await axios.post('http://localhost:3000/user/chat',msgobj,{ headers: { "Authorization" : token}})
     if(response.status === 201){
-        document.querySelector('.chat-messages').innerHTML += `<div class="message">
-        <span class="sender">${response.data.user}:</span>
-        <span class="text">${response.data.chat}</span>
-    </div>`
+        document.querySelector('.chat-messages').innerHTML = ''
+        for(let i=0;i<response.data.chat.length;i++){
+            showchatonscreen(response.data.chat[i])
+       }
     }
    
 }
 
-window.addEventListener('DOMContentLoaded',(e)=>{
+window.addEventListener('DOMContentLoaded',async (e)=>{
     e.preventDefault();
-    // document.querySelector('.chat-logs').innerHTML += `<div class="logs">${userobj.name}</div>`
+    const response = await axios.get('http://localhost:3000/user/chats',{ headers: { "Authorization" : token}})
+    if(response.status === 201){
+       for(let i=0;i<response.data.chat.length;i++){
+            showchatonscreen(response.data.chat[i])
+       }
+    }
+    document.querySelector('.chat-logs').innerHTML += `<div class="logs">${response.data.user}</div>`
 })
 
-// function parseJwt (token) {
-//     var base64Url = token.split('.')[1];
-//     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-//     var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-//         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-//     }).join(''));
-
-//     return JSON.parse(jsonPayload);
-// }
+function showchatonscreen(data){
+    document.querySelector('.chat-messages').innerHTML += `<div class="message">
+    <span class="sender">${data.name}:</span>
+    <span class="text">${data.chat}</span>
+</div>`
+}
