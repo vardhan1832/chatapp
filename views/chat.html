@@ -21,9 +21,13 @@
     </header>
     <br>
     <div class="chat-window ">
-        <div class="chat-header">
-            <h2>Welcome to the Chat</h2>
+        <div style="display: flex;">
+            <button style="height: fit-content;" id="group" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">+ new group</button>
+            <div class="chat-header">
+                <h2>Welcome to the Chat</h2>
+            </div>
         </div>
+       
         <div class="chat-logs">
            
         </div>
@@ -32,7 +36,7 @@
         </div> 
         <div class="chat-input">
             <input type="text" id="text" class="textInput" placeholder="Type your message">
-            <button id="sendmsg">Send</button>
+            <button type="submit" id="sendmsg" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">send</button>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>

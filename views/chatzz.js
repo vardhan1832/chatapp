@@ -1,11 +1,21 @@
 const token = localStorage.getItem('token')
+const userobj = parseJwt(token)
+
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
 
 setInterval(async ()=>{
- 
     let lastid;
     var chatarr = localStorage.getItem('chats')
     var realchatarr  =  JSON.parse(chatarr)
-    if(realchatarr === null){
+    if(realchatarr === null || realchatarr.length === 0){
         realchatarr = [];
         lastid =undefined
     }else{
@@ -27,8 +37,7 @@ setInterval(async ()=>{
         showchatonscreen(realchatarr[i])
     }
     console.log('2nt', lastid)
-    document.querySelector('.chat-logs').innerHTML = `<div class="logs">${user}</div>`
-},3000)
+},5000)
 
 document.getElementById('sendmsg').onclick=async (e)=>{
     e.preventDefault();
@@ -39,38 +48,30 @@ document.getElementById('sendmsg').onclick=async (e)=>{
     if(response.status === 201){
         showchatonscreen(response.data)
     }
-   
 }
 
 window.addEventListener('DOMContentLoaded',async (e)=>{
     e.preventDefault();
-    //let lastid;
     var chatarr = localStorage.getItem('chats')
     var realchatarr  =  JSON.parse(chatarr)
-    // if(realchatarr === null){
-    //     realchatarr = [];
-    //     lastid =undefined
-    // }else{
-    //     lastid = realchatarr[realchatarr.length - 1].id
-    // }
-    // console.log('1st', lastid)
- 
-    // const response = await axios.get(`http://localhost:3000/user/chats/${lastid}`,{ headers: { "Authorization" : token}})
-    // if(response.status === 201){
-    //     realchatarr.push(...response.data.chat)
-    //     console.log(realchatarr)
-    //     localStorage.setItem('chats',JSON.stringify(realchatarr))
-    //     localStorage.setItem('user',response.data.user)
-    //      lastid = response.data.lastid
-    // }
+
+    const response = await axios.get(`http://localhost:3000/groups`,{ headers: { "Authorization" : token}})
+    if(response.status === 201){
+        document.querySelector('.chat-logs').innerHTML = ''
+        for(let i=0;i<response.data.groups.length;i++){
+            document.querySelector('.chat-logs').innerHTML += `<div class="logs">
+            <button id="id_${response.data.groups[i].id}"
+             style="width: 100%;background-color: white;border:1px solid #ccc;">
+            <h5>${response.data.groups[i].groupname}</h5>
+            </button></div>`
+        }
+    }
+
     const user = localStorage.getItem('user')
     document.querySelector('.chat-messages').innerHTML = ''
     for(let i=0;i<realchatarr.length;i++){
         showchatonscreen(realchatarr[i])
-    }
-    // console.log('2nt', lastid)
-    document.querySelector('.chat-logs').innerHTML += `<div class="logs">${user}</div>`
-    
+    }    
 })
 
 function showchatonscreen(data){
@@ -79,3 +80,15 @@ function showchatonscreen(data){
     <span class="text">${data.chat}</span>
 </div>`
 }
+
+document.getElementById('group').onclick= async (e) =>{
+    e.preventDefault();
+    const group_name = prompt("Enter Group Name")
+    const response = await axios.post('http://localhost:3000/group',{groupName: group_name},{ headers: { "Authorization" : token}})
+    document.querySelector('.chat-logs').innerHTML += `<div class="logs">
+    <button id="id_${response.data.grpid}"
+     style="width: 100%;background-color: white;border:1px solid #ccc;margin-bottom:0px;margin-top:0px">
+    <h5>${group_name}</h5>
+    </button></div>`
+}
+

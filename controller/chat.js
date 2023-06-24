@@ -17,6 +17,7 @@ const postChat = async (req,res,next)=>{
 const getChat = async (req, res, next) => {
     try {
       const username = req.user.name
+      const userid = req.user.id
       var lastid = req.params.lastid
       if(lastid === undefined){
         lastid = 0;
@@ -52,7 +53,8 @@ const getChat = async (req, res, next) => {
         message: 'got all texts',
         chat: chatArray,
         user: username,
-        lastid: lastChatId
+        lastid: lastChatId,
+        userid: userid
       })
     } catch (err) {
       console.log(err)

@@ -18,6 +18,7 @@ body {
 }
 
 .chat-header {
+    margin-left: 20%;
     text-align: center;
     margin-bottom: 20px;
 }
