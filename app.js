@@ -27,7 +27,7 @@ app.use(grouproutes)
 
 app.use((req,res)=>{
     console.log('url',req.url)
-    console.log('hello everyoone')
+    console.log(__dirname)
     res.sendFile(path.join(__dirname,`views/${req.url}`))
 })
 
