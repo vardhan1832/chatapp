@@ -27,7 +27,7 @@ document.getElementById('logout').onclick = (e)=>{
 //         lastid = realchatarr[realchatarr.length - 1].id
 //     }
   
-//     const response = await axios.get(`http://localhost:3000/user/chats/${lastid}`,{ headers: { "Authorization" : token}})
+//     const response = await axios.get(`http://44.204.57.2:3000/user/chats/${lastid}`,{ headers: { "Authorization" : token}})
 //     if(response.status === 201){
 //         realchatarr.push(...response.data.chat)
 //         console.log(realchatarr)
@@ -48,7 +48,7 @@ document.getElementById('sendmsg').onclick=async (e)=>{
         msg : document.getElementById('text').value,
         groupId : localStorage.getItem('groupId')
     } 
-    const response = await axios.post('http://localhost:3000/user/chat',msgobj,{ headers: { "Authorization" : token}})
+    const response = await axios.post('http://44.204.57.2:3000/user/chat',msgobj,{ headers: { "Authorization" : token}})
     if(response.status === 201){
         showchatonscreen(response.data)
     }
@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded',async (e)=>{
     // var chatarr = localStorage.getItem('chats')
     // var realchatarr  =  JSON.parse(chatarr)
 
-    const response = await axios.get(`http://localhost:3000/groups`,{ headers: { "Authorization" : token}})
+    const response = await axios.get(`http://44.204.57.2:3000/groups`,{ headers: { "Authorization" : token}})
     if(response.status === 201){
         document.querySelector('.chat-logs').innerHTML = ''
         for(let i=0;i<response.data.groups.length;i++){
@@ -88,7 +88,7 @@ function showchatonscreen(data){
 document.getElementById('group').onclick= async (e) =>{
     e.preventDefault();
     const group_name = prompt("Enter Group Name")
-    const response = await axios.post('http://localhost:3000/group',{groupName: group_name},{ headers: { "Authorization" : token}})
+    const response = await axios.post('http://44.204.57.2:3000/group',{groupName: group_name},{ headers: { "Authorization" : token}})
     document.querySelector('.chat-logs').innerHTML += `<div class="logs">
     <button id=${response.data.grpid}  onclick="getgrpchat(event)"
      style="width: 100%;background-color: white;border:1px solid #ccc;margin-bottom:0px;margin-top:0px">
@@ -101,7 +101,7 @@ async function getgrpchat(e){
     const groupId = parseInt(e.target.id) 
     localStorage.setItem("groupId",groupId) 
     document.querySelector('.chat-input').style.display = "flex"
-    const response = await axios.get('http://localhost:3000/group/chat',{ headers: { "Authorization" : token , 'groupId': groupId}})
+    const response = await axios.get('http://44.204.57.2:3000/group/chat',{ headers: { "Authorization" : token , 'groupId': groupId}})
     if(response.status === 201){
         localStorage.setItem('isadmin',JSON.stringify(response.data.isadmin))
         if(response.data.isadmin){
@@ -132,7 +132,7 @@ async function addusers(e){
     e.preventDefault()
     let groupId = e.target.id
     let usermail = prompt('Enter mail to add contact')
-    const response = await axios.get(`http://localhost:3000/user/group/${usermail}`,{ headers: { "Authorization" : token , 'groupId': groupId}})
+    const response = await axios.get(`http://44.204.57.2:3000/user/group/${usermail}`,{ headers: { "Authorization" : token , 'groupId': groupId}})
     if(response.status === 201){
         alert(response.data.message)
         document.getElementById('users').innerHTML +=  `<option value="${response.data.addeduser.id}">${response.data.addeduser.name}</option>`
@@ -159,7 +159,7 @@ document.getElementById('makeadmin').onclick = async (e)=>{
     e.preventDefault()
     const userid = localStorage.getItem('useridofselect')
     const groupId = localStorage.getItem('groupId')
-    const response = await axios.get(`http://localhost:3000/user/group/admin/${userid}`,{ headers: { "Authorization" : token , 'groupId': groupId}})
+    const response = await axios.get(`http://44.204.57.2:3000/user/group/admin/${userid}`,{ headers: { "Authorization" : token , 'groupId': groupId}})
     document.getElementById('adminusers').style.display = 'none';
 }
 document.getElementById('remove').onclick = async (e)=>{
@@ -167,7 +167,7 @@ document.getElementById('remove').onclick = async (e)=>{
     const userid = localStorage.getItem('useridofselect')
     const groupId = localStorage.getItem('groupId')
     if(confirm('Are you sure?')){
-        const response = await axios.delete(`http://localhost:3000/user/group/remove/${userid}`,{ headers: { "Authorization" : token , 'groupId': groupId}})
+        const response = await axios.delete(`http://44.204.57.2:3000/user/group/remove/${userid}`,{ headers: { "Authorization" : token , 'groupId': groupId}})
         if(response.status === 201){
         var removeduser = document.getElementById('users')
         removeduser.remove(removeduser.selectedIndex)

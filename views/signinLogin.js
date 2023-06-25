@@ -8,7 +8,7 @@ async function signup(e){
             password: e.target.password.value
         }
         console.log(userObj)
-        const response = await axios.post('http://localhost:3000/user/sign-up',userObj)
+        const response = await axios.post('http://44.204.57.2:3000/user/sign-up',userObj)
         if(response.status===201){
            window.location.href='./login.html';
            alert(response.data.message)
@@ -27,7 +27,7 @@ async function login(e){
             email: e.target.mail.value,
             password: e.target.password.value
         }
-        const response = await axios.post('http://localhost:3000/user/login',loginDetails)
+        const response = await axios.post('http://44.204.57.2:3000/user/login',loginDetails)
         if(response.status === 201){
             alert(response.data.message)
             localStorage.setItem('token',response.data.token)

@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 const bodyparser = require('body-parser')
 const cors = require('cors')
 require('dotenv').config();
@@ -23,6 +24,13 @@ app.use(bodyparser.json({ extended: false }));
 app.use('/user',signinroutes)
 app.use(chatroutes)
 app.use(grouproutes)
+
+app.use((req,res)=>{
+    console.log('url',req.url)
+    console.log('hello everyoone')
+    res.sendFile(path.join(__dirname,`views/${req.url}`))
+})
+
 
 User.hasMany(Chat)
 Chat.belongsTo(User)
