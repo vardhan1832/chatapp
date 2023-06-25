@@ -1,9 +1,9 @@
 const express = require('express')
 const bodyparser = require('body-parser')
-const sequelize = require('./util/database')
 const cors = require('cors')
 require('dotenv').config();
 
+const sequelize = require('./util/database')
 const app = express()
 app.use(cors({
     origin: '*'
