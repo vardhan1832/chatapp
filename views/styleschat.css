@@ -20,7 +20,7 @@ body {
 .chat-header {
     margin-left: 20%;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .chat-messages {
@@ -57,11 +57,23 @@ body {
 }
 
 .chat-input {
-    display: flex;
+    display: none;
     margin-top: 20px;
 }
 
 .textInput {
     width: 100%;
     margin-right: 3px;
+}
+
+.form-control.admin {
+    border: 3px solid #5f5b5b;
+    max-width: 250px;
+    padding: 10px;
+    background-color: rgb(216, 255, 239);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
 }

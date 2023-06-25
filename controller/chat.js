@@ -6,8 +6,9 @@ const { Op } = require('sequelize');
 const postChat = async (req,res,next)=>{
     try{
         const msg = req.body.msg;
+        const grpid = req.body.groupId;
         const username = req.user.name;
-        const data = await Chat.create({chat: msg,UserId: req.user.id})
+        const data = await Chat.create({chat: msg,UserId: req.user.id,groupId: grpid})
 
         res.status(201).json({message: 'msg sent succesfully',chat: data.chat,name: username})
     }catch(err){

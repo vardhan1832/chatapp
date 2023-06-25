@@ -17,14 +17,34 @@
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAB6CAMAAADkgxNVAAAAPFBMVEX///9fxL5YwrxTwbr1+/tox8FNv7nY7+57zcjE5+Ws3tvq9vaU1dGF0MuN087k9POj2te64+HQ7OpyysRMGctUAAACVUlEQVR4nO2ZzZaDIAyFaxCK4A/q+7/rSEdQOmBnU+LifsvKOb1ekhDi4wEAAAAAAAAAAAAAAAAAAMCB7YxzzszPlltJHtsNSglBG0IpaZ7cgv5geymoOSFIL9yiElqnEoEvSOkbeblI8UfhSyW5uwTmrLIKPWq4h8i+LHGzsrHc+jZcss8+rZPQJMkv0pxcJEW67/tBKnEWyb3dy2EaNePSvvS0k1uP38XIrPGUHuN0+r2djy1XvIUyBiPRu5BWR5GsITlFF2WmXPfhBYSpL+1QEayiKfd4DI8VX9q0cae7/HMZjJwrKzuYd5+olLnL/hLEd9yEvaRiToQVgitrwlYWbTyMVPlg+D7TfsSIi/oXnO7ryUpY1Oes3TebdD1ZCXNI63+skdVUpbh/eBQCkquxCBqHizXQ+Bmza7yKtY45HsP/i4s1u9fNWk1VSqyPF1fUz2X+u9jQUbjykvAaXE1FO9CnhAhbrbK9Ww1M6BhKPWxwulnZ+h4br3+FBcHoi2j4OvuVRRQ6hnhYsrVmj1ihVT6xu3D1vqzyX+e3rdHZaDPHIIAtYzyvEkk+ZaxL21g7Romc0ejxZtFiO62EWrsYds/+NJAkvhvXL3635T7DJand3HVmXCkZVOVjoR7teh6TEYmN95kucc9zU5FZSrWpHlbnJ81nI7k1+slUwUraM6cwx6hKfmhPZBbdeP1sV9eEWb5//SDhfCmyZt2elCcZVVlGSeI1GPVfuhptYsGZ+vUWk3uPXeZx3RTKwXXp6dfeRSIAAAAAAAAAAAAAAAAAAAA7P8AED1GH95DfAAAAAElFTkSuQmCC" alt="Logo" class="logo-img">
                  CHATZZZ....
               </h1>
+              <button style="height: fit-content;margin-top: 5px;margin-left: 70%;" id="logout" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">Logout</button>
         </nav>  
     </header>
     <br>
     <div class="chat-window ">
         <div style="display: flex;">
-            <button style="height: fit-content;" id="group" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">+ new group</button>
+            <button style="height: fit-content;margin-bottom: 4px;" id="group" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">+ new group</button>
             <div class="chat-header">
-                <h2>Welcome to the Chat</h2>
+                <h2>GROUP CHAT</h2>
+            </div>
+            <div id="users_in_grp" style="display: none;margin-left: 5%;margin-right: 3px;margin-top: 5px;">
+                <select name="users" onchange="adminpowers(event)" id="users" style="width: 250px;">
+                   
+                </select>
+                <form action="#" style="display: none;" id="adminusers" class="form-control admin">
+                    <label class="form-label" for="makeadmin">Make User admin:</label>
+                    <button id="makeadmin" style="height: fit-content;" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">Admin</button>
+                    <label class="form-label" for="remove">Remove User:</label>
+                    <button id="remove" style="height: fit-content;" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-dark">Remove</button>
+                    <br>
+
+                    <button id="close">close</button>
+                </form>
+                
+               
+            </div>
+            <div id="addUsers" style="float:inline-end;">
+               
             </div>
         </div>
        
